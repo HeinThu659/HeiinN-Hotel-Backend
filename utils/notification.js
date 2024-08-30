@@ -84,8 +84,8 @@ const sendBookingNotification = async (booking) => {
                   </div>` : ''}
                 <p style="margin-top: 20px;">We look forward to hosting you. If you have any questions or need further assistance, please do not hesitate to contact us.</p>
                 <p>Best regards,</p>
-                <p><strong>Ember Glow Hotel</strong></p>
-                <p><a href="https://ember-glow.vercel.app" style="color: #0066cc;">Visit our website</a></p>
+                <p><strong>HeiinN Hotel</strong></p>
+                <p><a href="https://heiin-n-hotel.vercel.app/home" style="color: #0066cc;">Visit our website</a></p>
             </div>
             `,
         };
