@@ -382,7 +382,7 @@ export const createNewBooking = async (req, res, next) => {
 // UPDATE BOOKING BY ID (may be in the future, file uploads, checkIn/Out updates will come)
 export const updateBookingById = async (req, res, next) => {
     try {
-        const id = req.params.id;
+        const id = req.params.bookingId;
         const booking = await BookingModel.findById(id);
         if (!booking) {
             return res.status(404).json({
@@ -401,6 +401,13 @@ export const updateBookingById = async (req, res, next) => {
         if (paymentProof) booking.paymentProof = paymentProof;
         if (totalPrice) booking.totalPrice = totalPrice;
         if (specialRequests) booking.specialRequests = specialRequests;
+        // Check if the booking status is 'Cancelled' or 'Archived'
+        if (status === 'Cancelled' || status === 'Archived') {
+            booking.checkIn = null; // Remove check-in date
+            booking.checkOut = null; // Remove check-out date
+            console.log('check in date: ', booking.checkIn);
+             console.log('check out date: ', booking.checkOut);
+        }
 
         await booking.save();
         // send notification

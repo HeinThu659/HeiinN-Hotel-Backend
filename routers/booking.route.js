@@ -10,6 +10,6 @@ bookingRouter
     .get('/one/:id', isAuthenticated, authorizeRoles([1, 2]), getBookingById)
     .get('/booked-dates/:roomId', checkDates)
     .post('/new/:roomId', isAuthenticated, authorizeRoles([0, 2]), createNewBooking)
-    .patch('/update/:id', isAuthenticated, authorizeRoles([1, 2]), updateBookingById);
+    .patch('/update/:bookingId', isAuthenticated, authorizeRoles([1, 2]), updateBookingById);
 
 export default bookingRouter;
