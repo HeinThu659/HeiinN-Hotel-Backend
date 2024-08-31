@@ -13,7 +13,10 @@ const bookingSchema = new mongoose.Schema({
   },
   checkIn: {
     type: Date,
-    required: true,
+    required: function() {
+      // Required if the status is not 'Cancelled' or 'Archived'
+      return this.status !== 'Cancelled' && this.status !== 'Archived';
+  },
     validate: {
       validator: function(value) {
         // Ensure check-in date is not in the past
@@ -24,7 +27,10 @@ const bookingSchema = new mongoose.Schema({
   },
   checkOut: {
     type: Date,
-    required: true,
+    required: function() {
+      // Required if the status is not 'Cancelled' or 'Archived'
+      return this.status !== 'Cancelled' && this.status !== 'Archived';
+  },
     validate: {
       validator: function(value) {
         // Ensure check-out is after check-in
